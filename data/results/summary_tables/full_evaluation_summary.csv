@@ -1,0 +1,31 @@
+model,config,best_threshold,precision,recall,f1,f1_ci_low,f1_ci_high,accuracy,auc
+mpnet,Outcomes (Raw),0.74,0.881,0.961,0.919,0.872,0.959,0.916,0.963
+mpnet,Outcomes + Contents (Raw),0.65,0.833,0.974,0.898,0.846,0.942,0.89,0.942
+mpnet,Outcomes + Contents + Assessment (Raw),0.63,0.798,0.922,0.855,0.792,0.906,0.844,0.907
+mpnet,Outcomes (Lemmatized),0.66,0.824,0.974,0.893,0.838,0.936,0.883,0.958
+mpnet,Outcomes + Contents (Lemmatized),0.61,0.824,0.909,0.864,0.8,0.917,0.857,0.929
+mpnet,Outcomes + Contents + Assessment (Lemmatized),0.52,0.685,0.987,0.8,0.745,0.865,0.766,0.866
+stsb,Outcomes (Raw),0.88,0.906,1.0,0.951,0.913,0.981,0.948,0.988
+stsb,Outcomes + Contents (Raw),0.85,0.902,0.961,0.931,0.881,0.967,0.929,0.968
+stsb,Outcomes + Contents + Assessment (Raw),0.83,0.924,0.948,0.936,0.894,0.971,0.935,0.971
+stsb,Outcomes (Lemmatized),0.83,0.874,0.987,0.927,0.882,0.965,0.922,0.981
+stsb,Outcomes + Contents (Lemmatized),0.85,0.895,0.883,0.889,0.825,0.933,0.89,0.957
+stsb,Outcomes + Contents + Assessment (Lemmatized),0.79,0.847,0.935,0.889,0.832,0.934,0.883,0.953
+e5,Outcomes (Raw),0.9,0.833,0.974,0.898,0.844,0.94,0.89,0.948
+e5,Outcomes + Contents (Raw),0.91,0.884,0.987,0.933,0.888,0.967,0.929,0.964
+e5,Outcomes + Contents + Assessment (Raw),0.9,0.83,0.948,0.885,0.827,0.931,0.877,0.942
+e5,Outcomes (Lemmatized),0.9,0.885,0.896,0.89,0.832,0.936,0.89,0.957
+e5,Outcomes + Contents (Lemmatized),0.9,0.89,0.948,0.918,0.866,0.959,0.916,0.957
+e5,Outcomes + Contents + Assessment (Lemmatized),0.9,0.886,0.909,0.897,0.841,0.942,0.896,0.947
+labse,Outcomes (Raw),0.87,0.963,1.0,0.981,0.955,1.0,0.981,0.999
+labse,Outcomes + Contents (Raw),0.88,0.962,0.987,0.974,0.945,0.994,0.974,0.996
+labse,Outcomes + Contents + Assessment (Raw),0.84,0.939,1.0,0.969,0.94,0.993,0.968,0.992
+labse,Outcomes (Lemmatized),0.85,0.939,1.0,0.969,0.938,0.994,0.968,0.997
+labse,Outcomes + Contents (Lemmatized),0.88,0.951,1.0,0.975,0.949,0.994,0.974,0.994
+labse,Outcomes + Contents + Assessment (Lemmatized),0.89,0.95,0.987,0.968,0.938,0.993,0.968,0.998
+finbert,Outcomes (Raw),0.58,0.623,0.857,0.721,0.644,0.793,0.669,0.716
+finbert,Outcomes + Contents (Raw),0.56,0.571,0.935,0.709,0.633,0.773,0.617,0.697
+finbert,Outcomes + Contents + Assessment (Raw),0.56,0.562,0.948,0.705,0.629,0.771,0.604,0.678
+finbert,Outcomes (Lemmatized),0.57,0.585,0.935,0.72,0.645,0.787,0.636,0.702
+finbert,Outcomes + Contents (Lemmatized),0.55,0.551,0.974,0.704,0.636,0.767,0.591,0.701
+finbert,Outcomes + Contents + Assessment (Lemmatized),0.56,0.55,0.935,0.692,0.619,0.755,0.584,0.686

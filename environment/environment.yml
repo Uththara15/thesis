@@ -1,0 +1,37 @@
+name: thesis_env
+
+channels:
+  - conda-forge
+  - defaults
+
+dependencies:
+  - python=3.10
+
+  # Data and numerics
+  - numpy=1.26.4
+  - pandas=2.2.3
+  - scipy=1.13.1
+
+  # ML and evaluation
+  - scikit-learn=1.5.2
+
+  # Plotting
+  - matplotlib=3.9.2
+  - seaborn=0.13.2
+
+  # Notebook environment
+  - jupyter=1.1.1
+  - ipykernel=6.29.5
+
+  # pip-only packages installed into the conda env
+  - pip=24.2
+  - pip:
+      # Deep learning
+      - torch==2.3.1
+      - transformers==4.44.2
+      - sentence-transformers==3.0.1
+
+      # NLP
+      - spacy==3.7.5
+      - https://github.com/explosion/spacy-models/releases/download/fi_core_news_sm-3.7.0/fi_core_news_sm-3.7.0-py3-none-any.whl
+      - https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.7.1/en_core_web_sm-3.7.1-py3-none-any.whl

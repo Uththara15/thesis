@@ -1,4 +1,4 @@
-# thesis
+# thesis project
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.labranet.jamk.fi/AD9947/thesis.git
+git remote add origin https://gitlab.labranet.jamk.fi/AD9947/thesis-project.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-* [Set up project integrations](https://gitlab.labranet.jamk.fi/AD9947/thesis/-/settings/integrations)
+* [Set up project integrations](https://gitlab.labranet.jamk.fi/AD9947/thesis-project/-/settings/integrations)
 
 ## Collaborate with your team
 

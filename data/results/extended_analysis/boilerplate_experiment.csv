@@ -1,0 +1,4 @@
+variant,f1,f1_ci_low,f1_ci_high
+Original text,0.981,0.955,1.0
+EUR-ACE removed,0.938,0.894,0.974
+All repeated boilerplate removed,0.385,0.278,0.49

@@ -1,0 +1,7 @@
+config,language,n_texts,mean_tokens,median_tokens,max_tokens_untruncated,n_truncated,pct_truncated
+1,fi,72,315.4,320.0,678,2,2.78
+1,en,72,264.1,267.5,778,1,1.39
+2,fi,72,408.5,401.5,871,11,15.28
+2,en,72,338.2,347.5,942,1,1.39
+3,fi,72,748.8,716.5,1644,60,83.33
+3,en,72,610.3,572.0,1599,47,65.28

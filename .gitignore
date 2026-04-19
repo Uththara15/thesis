@@ -1,0 +1,19 @@
+﻿# Jupyter
+.ipynb_checkpoints/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# Embeddings (large binary files)
+data/embeddings/ict/*.npy
+data/embeddings/bit/*.npy
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/

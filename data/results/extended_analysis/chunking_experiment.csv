@@ -1,0 +1,5 @@
+config,strategy,threshold,f1,f1_ci_low,f1_ci_high
+Outcomes (Raw),single-encode (truncation),0.88,0.974,0.947,0.994
+Outcomes (Raw),"chunked (384tok, overlap=64)",0.88,0.967,0.934,0.993
+Outcomes + Contents + Assessment (Raw),single-encode (truncation),0.88,0.87,0.809,0.924
+Outcomes + Contents + Assessment (Raw),"chunked (384tok, overlap=64)",0.88,0.847,0.78,0.909

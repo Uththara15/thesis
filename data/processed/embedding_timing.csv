@@ -1,0 +1,6 @@
+model,load_time_sec,encode_time_sec,total_time_sec
+mpnet,23.87,31.31,55.19
+stsb,25.92,30.35,56.27
+e5,14.39,31.04,45.43
+labse,38.45,29.45,67.91
+finbert,14.61,38.7,53.32

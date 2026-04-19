@@ -1,0 +1,4 @@
+config,transfer_threshold,bit_optimal_threshold,ict_f1_cv_mean,ict_f1_cv_std,bit_f1_full_at_transferred,bit_f1_full_ci_low,bit_f1_full_ci_high,bit_f1_cv_optimal_mean,bit_f1_cv_optimal_std,bit_f1_cv_transferred_mean,bit_f1_cv_transferred_std,threshold_gap,ict_to_bit_f1_gap
+Outcomes (Raw),0.88,0.881,0.968,0.022,0.971,0.923,1.0,0.956,0.04,0.969,0.042,-0.013,0.012
+Outcomes + Contents (Raw),0.88,0.839,0.969,0.043,0.971,0.923,1.0,0.931,0.045,0.969,0.042,-0.038,0.038
+Outcomes + Contents + Assessment (Raw),0.84,0.85,0.97,0.03,0.986,0.949,1.0,0.985,0.034,0.985,0.034,0.0,-0.015

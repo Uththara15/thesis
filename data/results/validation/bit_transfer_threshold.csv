@@ -1,0 +1,4 @@
+config,transfer_threshold,threshold_source,precision,recall,f1,f1_ci_low,f1_ci_high,accuracy,auc
+Outcomes (Raw),0.88,ICT CV mean for Outcomes (Raw),1.0,0.944,0.971,0.923,1.0,0.972,0.98
+Outcomes + Contents (Raw),0.88,ICT CV mean for Outcomes + Contents (Raw),1.0,0.944,0.971,0.923,1.0,0.972,0.998
+Outcomes + Contents + Assessment (Raw),0.84,ICT CV mean for Outcomes + Contents + Assessment (Raw),1.0,0.972,0.986,0.949,1.0,0.986,0.999
