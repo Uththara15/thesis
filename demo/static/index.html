@@ -1,0 +1,827 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JAMK Course Similarity Demo</title>
+
+<style>
+  :root {
+    --navy: #061a33;
+    --navy-2: #0d2a4d;
+    --navy-3: #143b68;
+    --white: #ffffff;
+    --bg: #f4f7fb;
+    --soft-blue: #eaf2fb;
+    --soft-blue-2: #f7fbff;
+    --text: #101828;
+    --muted: #667085;
+    --border: #d8e2ef;
+    --shadow: 0 22px 55px rgba(6, 26, 51, 0.12);
+    --radius: 22px;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    background: var(--bg);
+    color: var(--text);
+    font-family: Arial, Helvetica, sans-serif;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, var(--navy), var(--navy-2));
+    color: var(--white);
+    padding: 34px 0 78px;
+  }
+
+  .container {
+    width: min(1120px, calc(100% - 32px));
+    margin: 0 auto;
+  }
+
+  .topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 18px;
+    margin-bottom: 54px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .logo {
+    width: 46px;
+    height: 46px;
+    border-radius: 14px;
+    background: var(--white);
+    color: var(--navy);
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    font-size: 20px;
+  }
+
+  .brand-title {
+    font-weight: 800;
+    font-size: 16px;
+  }
+
+  .brand-subtitle {
+    color: #c9d7ea;
+    font-size: 13px;
+    margin-top: 3px;
+  }
+
+  .model-pill {
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    background: rgba(255, 255, 255, 0.09);
+    color: var(--white);
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    gap: 34px;
+    align-items: start;
+  }
+
+  .eyebrow {
+    color: #b8d7ff;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+  }
+
+  h1 {
+    margin: 0;
+    font-size: clamp(36px, 5vw, 58px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+    max-width: 780px;
+  }
+
+  .lead {
+    color: #d4deeb;
+    font-size: 18px;
+    line-height: 1.65;
+    max-width: 720px;
+    margin: 20px 0 0;
+  }
+
+  .demo-summary {
+    background: rgba(255, 255, 255, 0.09);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: var(--radius);
+    padding: 22px;
+  }
+
+  .demo-summary h2 {
+    margin: 0 0 14px;
+    font-size: 18px;
+  }
+
+  .summary-item {
+    display: flex;
+    gap: 12px;
+    padding: 13px 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.14);
+  }
+
+  .summary-item:first-of-type {
+    border-top: 0;
+    padding-top: 0;
+  }
+
+  .summary-number {
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--white);
+    color: var(--navy);
+    display: grid;
+    place-items: center;
+    font-weight: 900;
+    flex: 0 0 auto;
+  }
+
+  .summary-text strong {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 3px;
+  }
+
+  .summary-text span {
+    color: #d4deeb;
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .main {
+    margin-top: -48px;
+    padding-bottom: 54px;
+  }
+
+  .search-panel {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    padding: 28px;
+  }
+
+  .search-header {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+
+  .search-header h2 {
+    margin: 0;
+    font-size: 25px;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+  }
+
+  .search-header p {
+    margin: 7px 0 0;
+    color: var(--muted);
+    line-height: 1.5;
+    font-size: 14px;
+  }
+
+  .top3-badge {
+    background: var(--soft-blue);
+    color: var(--navy);
+    border-radius: 999px;
+    padding: 9px 14px;
+    font-size: 13px;
+    font-weight: 900;
+    white-space: nowrap;
+  }
+
+  .input-label {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 9px;
+    color: var(--text);
+    font-weight: 800;
+    font-size: 14px;
+  }
+
+  .char-count {
+    color: var(--muted);
+    font-weight: 400;
+  }
+
+  textarea {
+    width: 100%;
+    min-height: 185px;
+    resize: vertical;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    font: inherit;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--text);
+    outline: none;
+    background: var(--soft-blue-2);
+  }
+
+  textarea:focus {
+    border-color: var(--navy-3);
+    box-shadow: 0 0 0 4px rgba(20, 59, 104, 0.12);
+    background: var(--white);
+  }
+
+  textarea::placeholder {
+    color: #98a2b3;
+  }
+
+  .action-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    align-items: center;
+    margin-top: 16px;
+  }
+
+  .helper-text {
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  .button-row {
+    display: flex;
+    gap: 10px;
+  }
+
+  button {
+    border: 0;
+    border-radius: 13px;
+    padding: 13px 20px;
+    font-size: 15px;
+    font-weight: 800;
+    cursor: pointer;
+    font-family: inherit;
+  }
+
+  .primary-btn {
+    background: var(--navy);
+    color: var(--white);
+    min-width: 160px;
+  }
+
+  .primary-btn:hover {
+    background: var(--navy-2);
+  }
+
+  .secondary-btn {
+    background: var(--soft-blue);
+    color: var(--navy);
+  }
+
+  .secondary-btn:hover {
+    background: #dce9f8;
+  }
+
+  button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+  }
+
+  .examples {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .example-btn {
+    border: 1px solid var(--border);
+    background: var(--white);
+    color: var(--navy);
+    padding: 9px 12px;
+    border-radius: 999px;
+    font-size: 13px;
+    font-weight: 800;
+  }
+
+  .example-btn:hover {
+    background: var(--soft-blue);
+  }
+
+  .results-area {
+    margin-top: 26px;
+  }
+
+  .message {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 30px;
+    text-align: center;
+    color: var(--muted);
+    box-shadow: 0 10px 30px rgba(6, 26, 51, 0.05);
+  }
+
+  .section-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+    margin-bottom: 14px;
+  }
+
+  .section-title h2 {
+    margin: 0;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    color: var(--navy);
+  }
+
+  .section-title span {
+    color: var(--muted);
+    font-size: 13px;
+  }
+
+  .result-list {
+    display: grid;
+    gap: 14px;
+  }
+
+  .result-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr 150px;
+    gap: 20px;
+    box-shadow: 0 10px 30px rgba(6, 26, 51, 0.06);
+    border-left: 7px solid var(--navy);
+  }
+
+  .course-title {
+    margin: 0 0 8px;
+    font-size: 19px;
+    line-height: 1.35;
+    color: var(--navy);
+  }
+
+  .course-meta {
+    color: var(--muted);
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+
+  .course-outcomes {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1.58;
+    margin: 0;
+  }
+
+  .score-box {
+    text-align: right;
+  }
+
+  .score-label {
+    color: var(--muted);
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  .score {
+    color: var(--navy);
+    font-size: 30px;
+    font-weight: 900;
+    letter-spacing: -0.04em;
+  }
+
+  .rank-badge {
+    display: inline-block;
+    margin-top: 9px;
+    padding: 7px 10px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 900;
+    color: var(--navy);
+    background: var(--soft-blue);
+  }
+
+  .note-grid {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+  }
+
+  .note-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+  }
+
+  .note-card strong {
+    display: block;
+    color: var(--navy);
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+  .note-card p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+
+  footer {
+    color: var(--muted);
+    text-align: center;
+    margin-top: 36px;
+    font-size: 12px;
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .search-header,
+    .action-row,
+    .section-title,
+    .topbar {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .button-row {
+      width: 100%;
+      flex-direction: column;
+    }
+
+    button {
+      width: 100%;
+    }
+
+    .result-card {
+      grid-template-columns: 1fr;
+    }
+
+    .score-box {
+      text-align: left;
+    }
+
+    .note-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .model-pill {
+      white-space: normal;
+    }
+  }
+</style>
+</head>
+
+<body>
+
+<header class="hero">
+  <div class="container">
+    <div class="topbar">
+      <div class="brand">
+        <div class="logo">J</div>
+        <div>
+          <div class="brand-title">JAMK Course Similarity Demo</div>
+          <div class="brand-subtitle">AI Curriculum Tool proof of concept</div>
+        </div>
+      </div>
+
+      <div class="model-pill">Powered by LaBSE embeddings</div>
+    </div>
+
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">Bilingual course description matching</div>
+        <h1>Find the three closest Finnish courses from a course description.</h1>
+        <p class="lead">
+          Write a course description in English, Finnish, or both. The app compares it with Finnish course descriptions and returns only the top three semantic matches.
+        </p>
+      </div>
+
+      <aside class="demo-summary">
+        <h2>How the demo works</h2>
+
+        <div class="summary-item">
+          <div class="summary-number">1</div>
+          <div class="summary-text">
+            <strong>Write a course description</strong>
+            <span>The input can be short, long, Finnish, English, or mixed.</span>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-number">2</div>
+          <div class="summary-text">
+            <strong>LaBSE creates embeddings</strong>
+            <span>The query and course descriptions are placed in the same multilingual vector space.</span>
+          </div>
+        </div>
+
+        <div class="summary-item">
+          <div class="summary-number">3</div>
+          <div class="summary-text">
+            <strong>Top 3 matches are shown</strong>
+            <span>The results are ranked by cosine similarity score.</span>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</header>
+
+<main class="main">
+  <div class="container">
+
+    <section class="search-panel">
+      <div class="search-header">
+        <div>
+          <h2>Search similar courses</h2>
+          <p>This demo shows how bilingual course comparison could support curriculum work.</p>
+        </div>
+
+        <div class="top3-badge">Top 3 results only</div>
+      </div>
+
+      <div class="input-label">
+        <span>Course description</span>
+        <span class="char-count" id="charCount">0 characters</span>
+      </div>
+
+      <textarea
+        id="queryInput"
+        placeholder="Example: Students learn backend development, REST APIs, database integration, authentication and deployment of server-side applications."
+      ></textarea>
+
+      <div class="action-row">
+        <div class="helper-text">
+          Press Enter to search. Use Shift and Enter for a new line.
+        </div>
+
+        <div class="button-row">
+          <button class="secondary-btn" id="clearBtn" type="button">Clear</button>
+          <button class="primary-btn" id="searchBtn" type="button">Search courses</button>
+        </div>
+      </div>
+
+      <div class="examples">
+        <button class="example-btn" type="button" data-example="Students learn backend development, REST APIs, database integration, authentication and deployment of server-side applications.">
+          Backend development
+        </button>
+
+        <button class="example-btn" type="button" data-example="Opiskelija ymmärtää tietokantojen perusteet, SQL-kyselyt, relaatiomallin ja tietokannan suunnittelun.">
+          Tietokannat
+        </button>
+
+        <button class="example-btn" type="button" data-example="The course covers machine learning, data preprocessing, model evaluation and practical AI applications.">
+          Machine learning
+        </button>
+      </div>
+    </section>
+
+    <section class="results-area" id="resultsArea">
+      <div class="message">
+        Enter a course description to see the top three closest matches.
+      </div>
+    </section>
+
+    <section class="note-grid">
+      <div class="note-card">
+        <strong>What the score means</strong>
+        <p>The score is cosine similarity between the query embedding and each course description embedding.</p>
+      </div>
+
+      <div class="note-card">
+        <strong>How to read results</strong>
+        <p>The first result is the closest semantic match. The second and third are alternative nearby courses.</p>
+      </div>
+
+      <div class="note-card">
+        <strong>Demo limitation</strong>
+        <p>The interface is for retrieval and review. It does not replace final human curriculum judgement.</p>
+      </div>
+    </section>
+
+    <footer>
+      JAMK AI Curriculum Tool POC | LaBSE | tietojenkasittely dataset
+    </footer>
+
+  </div>
+</main>
+
+<script>
+var input = document.getElementById("queryInput");
+var count = document.getElementById("charCount");
+var searchButton = document.getElementById("searchBtn");
+var clearButton = document.getElementById("clearBtn");
+var resultsArea = document.getElementById("resultsArea");
+var exampleButtons = document.querySelectorAll(".example-btn");
+
+input.addEventListener("input", function () {
+  updateCharacterCount();
+});
+
+input.addEventListener("keydown", function (event) {
+  if (event.key === "Enter" && !event.shiftKey) {
+    event.preventDefault();
+    doSearch();
+  }
+});
+
+searchButton.addEventListener("click", function () {
+  doSearch();
+});
+
+clearButton.addEventListener("click", function () {
+  input.value = "";
+  updateCharacterCount();
+  createMessage("Enter a course description to see the top three closest matches.");
+  input.focus();
+});
+
+for (var i = 0; i < exampleButtons.length; i++) {
+  exampleButtons[i].addEventListener("click", function () {
+    input.value = this.getAttribute("data-example");
+    updateCharacterCount();
+    input.focus();
+  });
+}
+
+function updateCharacterCount() {
+  var length = input.value.length;
+  count.textContent = length === 1 ? "1 character" : length + " characters";
+}
+
+function clearElement(element) {
+  while (element.firstChild) {
+    element.removeChild(element.firstChild);
+  }
+}
+
+function createMessage(text) {
+  clearElement(resultsArea);
+
+  var message = document.createElement("div");
+  message.className = "message";
+  message.textContent = text;
+
+  resultsArea.appendChild(message);
+}
+
+function createResultCard(result, rank) {
+  var card = document.createElement("article");
+  card.className = "result-card";
+
+  var left = document.createElement("div");
+
+  var title = document.createElement("h3");
+  title.className = "course-title";
+  title.textContent = rank + ". " + result.title;
+
+  var meta = document.createElement("div");
+  meta.className = "course-meta";
+  meta.textContent = result.course_id + " | " + result.credits + " cr";
+
+  var outcomes = document.createElement("p");
+  outcomes.className = "course-outcomes";
+  outcomes.textContent = result.outcomes || "No outcome preview available.";
+
+  left.appendChild(title);
+  left.appendChild(meta);
+  left.appendChild(outcomes);
+
+  var right = document.createElement("div");
+  right.className = "score-box";
+
+  var scoreLabel = document.createElement("div");
+  scoreLabel.className = "score-label";
+  scoreLabel.textContent = "Similarity score";
+
+  var score = document.createElement("div");
+  score.className = "score";
+  score.textContent = Number(result.score).toFixed(4);
+
+  var rankBadge = document.createElement("div");
+  rankBadge.className = "rank-badge";
+  rankBadge.textContent = "Rank " + rank;
+
+  right.appendChild(scoreLabel);
+  right.appendChild(score);
+  right.appendChild(rankBadge);
+
+  card.appendChild(left);
+  card.appendChild(right);
+
+  return card;
+}
+
+function renderResults(results) {
+  results = results.slice(0, 3);
+
+  clearElement(resultsArea);
+
+  var sectionTitle = document.createElement("div");
+  sectionTitle.className = "section-title";
+
+  var heading = document.createElement("h2");
+  heading.textContent = "Top 3 similar courses";
+
+  var countText = document.createElement("span");
+  countText.textContent = "Ranked by cosine similarity";
+
+  sectionTitle.appendChild(heading);
+  sectionTitle.appendChild(countText);
+
+  var list = document.createElement("div");
+  list.className = "result-list";
+
+  for (var i = 0; i < results.length; i++) {
+    list.appendChild(createResultCard(results[i], i + 1));
+  }
+
+  resultsArea.appendChild(sectionTitle);
+  resultsArea.appendChild(list);
+}
+
+async function doSearch() {
+  var query = input.value.trim();
+
+  if (!query) {
+    createMessage("Please enter a course description first.");
+    input.focus();
+    return;
+  }
+
+  searchButton.disabled = true;
+  searchButton.textContent = "Searching...";
+  createMessage("Searching the closest course descriptions...");
+
+  try {
+    var response = await fetch("/search", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        query: query
+      })
+    });
+
+    var data = await response.json();
+
+    if (!response.ok || data.error) {
+      createMessage(data.error || "Search failed.");
+      return;
+    }
+
+    if (!data.results || data.results.length === 0) {
+      createMessage("No matching courses were found.");
+      return;
+    }
+
+    renderResults(data.results);
+
+  } catch (error) {
+    createMessage("Server error. Check that Flask is running on port 5050.");
+  } finally {
+    searchButton.disabled = false;
+    searchButton.textContent = "Search courses";
+  }
+}
+</script>
+
+</body>
+</html>
