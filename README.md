@@ -240,10 +240,10 @@ The full thesis document including all chapters, result tables, threshold sweep 
 
 ## Author
 
-Madee Uththara Deegoda Gamage
-Bachelor of Engineering in ICT (Data Analytics & AI)
-JAMK University of Applied Sciences, Finland
+Madee Uththara Deegoda Gamage 
+Bachelor of Engineering in ICT (Data Analytics & AI) 
+JAMK University of Applied Sciences, Finland 
 
-GitHub: https://github.com/Uththara15
-LinkedIn: https://linkedin.com/in/uththara15
-Demo: https://huggingface.co/spaces/uththara/course-similarity-demo
+GitHub: https://github.com/Uththara15 
+LinkedIn: https://linkedin.com/in/uththara15 
+Demo: https://huggingface.co/spaces/uththara/course-similarity-demo 
